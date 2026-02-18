@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <a href="{% url 'dashboard' %}" class="btn btn-primary">Back</a><br><br>
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h5 class="text-center mb-0">Manage Family Members</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="Fld_Name" class="form-label">Name:</label>
+                    <input type="text" name="Fld_Name" id="Fld_Name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="plan_id" class="form-label">Plan:</label>
+                    <select name="plan_id" id="plan_id" class="form-select">
+                        <option value="">Select Plan</option>
+                        {% for plan in plans %}
+                        <option value="{{ plan.id }}">{{ plan.Fld_Plan_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Plan_type" class="form-label">Plan Type:</label>
+                    <select name="Fld_Plan_type" id="Fld_Plan_type" class="form-select">
+                        <option value="individual">Individual</option>
+                        <option value="family">Family</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Member_count" class="form-label">Number of Members:</label>
+                    <input type="number" name="Fld_Member_count" id="Fld_Member_count" class="form-control" value="1">
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button type="submit" class="btn btn-success">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

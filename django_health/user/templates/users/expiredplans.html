@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <a href="{% url 'admindash' %}" class="btn btn-primary">Back</a><br><br>
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Expired Plans</h5>
+        </div>
+        <div class="card-body">
+            <form method="get" class="mb-4">
+                <div class="form-group">
+                    <label for="months"><b>Select Duration:</b></label><br><br>
+                    <select name="months" id="months" class="form-control">
+                        <option value="">Select</option>
+                        <option value="1">Last 1 Month</option>
+                        <option value="3">Last 3 Months</option>
+                        <option value="6">Last 6 Months</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Find</button>
+            </form>
+            <hr>
+            {% if expired_plans %}
+                <h3>Expired Plans (Last {{ selected_months }} Months)</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Plan Name</th>
+                            <th>Validity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for plan in expired_plans %}
+                            <tr>
+                                <td>{{ plan.Fld_Plan_name }}</td>
+                                <td>{{ plan.Fld_Validity }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    No expired plans found for the selected duration.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

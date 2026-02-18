@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <a href="{% url 'dashboard' %}" class="btn btn-primary">Back</a><br><br>
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h5 class="text-center mb-0">Transaction History</h5>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <table class="table table-striped">
+                <thead class="table-active">
+                    <tr>
+                        <th>Sl no.</th>
+                        <th>Date</th>
+                        <th>Plan</th>
+                        <th>Amount</th>
+                        <th>GST</th>
+                        <th>Total Amount</th>
+                        <th>PayPal Transaction ID</th>
+                        <th>Family Members</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ transaction.Fld_Date }}</td>
+                        <td>{{ transaction.plan.Fld_Plan_name }}</td>
+                        <td>₹{{ transaction.Fld_Amount }}</td>
+                        <td>₹{{ transaction.Fld_gst }}</td>
+                        <td>₹{{ transaction.Fld_Total_amount }}</td>
+                        <td>{{ transaction.Fld_Paypal_transaction_id }}</td>
+                        <td>
+                            {% for member in transaction.family_members.all %}
+                                {{ member.Fld_Name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--navbar-->
+
+<nav class="main-header navbar navbar-expand navbar-light" style="background-color: grey;">
+    <ul class="navbar-nav w-100 d-flex justify-content-between">
+        <li class="nav-item">
+            <a href="{% url 'managecustomers' %}" class="nav-link">Manage Customers</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'manageinsurance' %}" class="nav-link">Manage Insurances</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'addplan' %}" class="nav-link">Add Plan</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'admintran' %}" class="nav-link">All Transactions</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'expiredpolicy' %}" class="nav-link">Expired Policies</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'expiredplans' %}" class="nav-link">Expired Plans</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'register' %}" class="nav-link">Register User</a>
+        </li>
+    </ul>
+</nav>
+
+<!--alert-->
+
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+{% endif %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #growthChart {
+            width: 300px; 
+            height: 250px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+
+            <!-- Revenue Summary Card -->
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title text-center">Revenue Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <h5 class="card-text"><strong>Daily Revenue:</strong></h5>
+                                <p class="card-text">₹{{ total_daily_revenue }}</p>
+                            </div>
+                            <div class="col">
+                                <h5 class="card-text"><strong>Monthly Revenue:</strong></h5>
+                                <p class="card-text">₹{{ total_monthly_revenue }}</p>
+                            </div>
+                            <div class="col">
+                                <h5 class="card-text"><strong>Yearly Revenue:</strong></h5>
+                                <p class="card-text">₹{{ total_yearly_revenue }}</p>
+                            </div>
+                            <div class="col">
+                                <h5 class="card-text"><strong>Active Policies:</strong></h5>
+                                <p class="card-text">{{ active_policies_count }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Growth Statistics Card -->
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="text-center">Growth Statistics</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('growthChart').getContext('2d');
+        var growthChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Daily', 'Monthly', 'Yearly'],
+                datasets: [{
+                    label: 'Number of Transactions',
+                    data: [{{ daily_growth }}, {{ monthly_growth }}, {{ yearly_growth }}],
+                    backgroundColor: ['#4CAF50', '#2196F3', '#FF5722']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+    {% comment %} {% if request.user.is_authenticated %}
+    <p style="color: green; text-align:center; ">
+        <strong>
+        Welcome, {{ request.user.first_name }}! You are in the following groups:
+        {% for group in request.user.groups.all %}
+            {{ group.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p></strong>
+    {% endif %} {% endcomment %}
+
+    {% endblock content %} 

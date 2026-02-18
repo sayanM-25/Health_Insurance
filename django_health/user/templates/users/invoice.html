@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-success text-white text-center">
+                <h5 class="mb-0">Invoice</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>PayPal Transaction ID:</strong> {{ transaction.Fld_Paypal_transaction_id }}</p>
+                <p><strong>Plan:</strong> {{ transaction.plan.Fld_Plan_name }}</p>
+                <p><strong>Amount:</strong> ₹{{ transaction.Fld_Amount }}</p>
+                <p><strong>GST (18%):</strong> ₹{{ transaction.Fld_gst }}</p>
+                <p><strong>Total Amount:</strong> ₹{{ transaction.Fld_Total_amount }}</p>
+                <h3 class="mt-4">Family Members:</h3>
+                <ul class="list-group">
+                    {% for member in transaction.family_members.all %}
+                        <li class="list-group-item">
+                            <strong>{{ member.Fld_Name }}</strong> - {{ member.plan.Fld_Plan_name }} ({{ member.Fld_Plan_type }} plan for {{ member.Fld_Member_count }} members)
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="card-footer text-center">
+                <p>Thank you for your business!</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <a href="{% url 'dashboard' %}" class="btn btn-primary">Back</a><br><br>
+
+<!--alert-->
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+<!--customers cart-->
+
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h5 class="text-center mb-0">{{request.user.first_name}}'s Cart</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-success table-striped table-hover table-sm">
+                <thead class="table-active">
+                    <tr>
+                        <th>Sl no.</th>
+                        <th>Plan Name</th>
+                        <th>Description</th>
+                        <th>Coverage Amount</th>
+                        <th>Premium</th>
+                        <th>Period</th>
+                        <th>Coverage Details</th>
+                        <th>Quantity</th>
+                        <th>Insurance Picture</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if user_cart %}
+                        {% for plan in user_cart %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ plan.plan.Fld_Plan_name }}</td>
+                            <td>{{ plan.plan.Fld_Description }}</td>
+                            <td>{{ plan.plan.Fld_Coverage_amount }}</td>
+                            <td>{{ plan.plan.Fld_Premium }}</td>
+                            <td>{{ plan.plan.Fld_Period }}</td>
+                            <td>{{ plan.plan.Fld_Coverage_details }}</td>
+                            <td>{{ plan.Fld_Quantity }}</td>
+                            <td>
+                                {% if plan.plan.Fld_Insurance_pic %}
+                                    <img src="{{ plan.plan.Fld_Insurance_pic.url }}" alt="{{ plan.plan.Fld_Plan_name }}'s insurance picture" class="img-thumbnail" style="width:100px; height:100px;">
+                                {% else %}
+                                    <p>No insurance picture available</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'removefromcart' plan.id %}" class="btn btn-danger">Remove from Cart</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="10" class="text-center">No records found</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--family cart-->
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h5 class="text-center mb-0"><b>Your Family Plans</b></h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-success table-striped table-hover table-sm">
+                <thead class="table-active">
+                    <tr>
+                        <th>Sl no.</th>
+                        <th>Name</th>
+                        <th>Plan</th>
+                        <th>Plan Type</th>
+                        <th>Number of Members</th>
+                        <th>Picture</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if family_cart %}
+                        {% for member in family_cart %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ member.Fld_Name }}</td>
+                            <td>{{ member.plan.Fld_Plan_name }}</td>
+                            <td>{{ member.Fld_Plan_type }}</td>
+                            <td>{{ member.Fld_Member_count }}</td>
+                            <td>
+                                {% if member.plan.Fld_Insurance_pic %}
+                                    <img src="{{ member.plan.Fld_Insurance_pic.url }}" alt="{{ member.plan.Fld_Plan_name }}'s insurance picture" class="img-thumbnail" style="width:100px; height:100px;">
+                                {% else %}
+                                    <p>No insurance picture available</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'removefromfamily' member.id %}" class="btn btn-danger">Remove from Cart</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="8" class="text-center">No records found</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--total cost-->
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h5 class="text-center mb-0">Total Cost</h5>
+        </div>
+        <div class="card-body text-center">
+            <div class="row mb-3">
+                <div class="col">
+                    <p class="card-text mb-1"><strong>Subtotal:</strong></p>
+                    <p class="card-text">₹{{ total_cost }}</p>
+                </div>
+                <div class="col">
+                    <p class="card-text mb-1"><strong>GST (18%):</strong></p>
+                    <p class="card-text">₹{{ gst }}</p>
+                </div>
+                <div class="col">
+                    <p class="card-text mb-1"><strong>Total:</strong></p>
+                    <p class="card-text">₹{{ total_cost_with_gst }}</p>
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-4 mx-auto mt-4">
+                <a href="{% url 'payment' %}" class="btn btn-success btn-lg">proceed</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

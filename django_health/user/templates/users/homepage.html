@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-secondary text-white text-center">
+            <h2 class="mb-0">Hi! Welcome to Django Health Service</h2>
+        </div>
+        <div class="card-body">
+            <p class="text-center"><i>This is a website of perfectly curated health plans each tailored according to the needs of the customers. Feel free to explore our content and live a hassle-free life.</i></p>
+        </div>
+    </div>
+    
+    <div class="card mt-4">
+        <div class="card-header bg-success text-white text-center">
+            <h2 class="mb-0"><strong>Some of our Popular Plans</strong></h2>
+        </div>
+        <div class="card-body">
+            <div class="container mt-5">
+                <div class="row">
+                    {% for plan in user %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            {% if plan.Fld_Insurance_pic %}
+                            <img src="{{ plan.Fld_Insurance_pic.url }}" class="card-img-top" alt="{{ plan.Fld_Plan_name }}">
+                            {% else %}
+                            <img src="default-placeholder.png" class="card-img-top" alt="No Image Available">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ plan.Fld_Plan_name }}</h5>
+                                <p class="card-text">{{ plan.Fld_Description }}</p>
+                                <p class="card-text"><strong>Price:</strong> ₹{{ plan.Fld_Coverage_amount }} ({{ plan.Fld_Period }})</p>
+                                <p class="card-text"><strong>Coverage Details:</strong> {{ plan.Fld_Coverage_details }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

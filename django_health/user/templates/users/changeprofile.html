@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="text-center mb-0">Change Profile Photo and Password</h5>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} mt-3">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+            <form method="POST" class="col-md-8 mx-auto" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <p><strong>Name:</strong> {{ user_profile.first_name }} {{ user_profile.last_name }}</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Username:</strong> {{ user_profile.username }}</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Email:</strong> {{ user_profile.email }}</p>
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label for="Fld_Profile_pic" class="form-label">Change Profile Picture:</label>
+                    <input type="file" name="Fld_Profile_pic" id="Fld_Profile_pic" class="form-control">
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label for="old_password" class="form-label">Old Password:</label>
+                    <input type="password" name="old_password" id="old_password" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="new_password1" class="form-label">New Password:</label>
+                    <input type="password" name="new_password1" id="new_password1" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="new_password2" class="form-label">Confirm New Password:</label>
+                    <input type="password" name="new_password2" id="new_password2" class="form-control">
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a class="btn btn-danger" href="{% if is_admin %}{% url 'admindash' %}{% else %}{% url 'dashboard' %}{% endif %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

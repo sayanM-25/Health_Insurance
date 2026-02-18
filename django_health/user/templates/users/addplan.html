@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="text-center mb-0">{% if data %}Edit{% else %}Create{% endif %} Insurance Plan</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" class="col-md-8 mx-auto" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="Fld_Plan_name" class="form-label">Plan Name:</label>
+                    <input type="text" id="Fld_Plan_name" name="Fld_Plan_name" class="form-control" value="{{ data.Fld_Plan_name|default:'' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Description" class="form-label">Description:</label>
+                    <textarea id="Fld_Description" name="Fld_Description" class="form-control" placeholder="Enter insurance description" required>{{ data.Fld_Description|default:'' }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Coverage_amount" class="form-label">Coverage Amount:</label>
+                    <input type="number" id="Fld_Coverage_amount" name="Fld_Coverage_amount" class="form-control" value="{{ data.Fld_Coverage_amount|default:'' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Premium" class="form-label">Premium:</label>
+                    <input type="number" id="Fld_Premium" name="Fld_Premium" class="form-control" value="{{ data.Fld_Premium|default:'' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Period" class="form-label">Period:</label>
+                    <select id="Fld_Period" name="Fld_Period" class="form-control" required>
+                        <option value="" >Select</option>
+                        <option value="Monthly" {% if data.Fld_Period == 'Monthly' %}selected{% endif %}>Monthly</option>
+                        <option value="Yearly" {% if data.Fld_Period == 'Yearly' %}selected{% endif %}>Yearly</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Coverage_details" class="form-label">Coverage Details:</label>
+                    <textarea id="Fld_Coverage_details" name="Fld_Coverage_details" class="form-control" placeholder="Enter coverage description" required>{{ data.Fld_Coverage_details|default:'' }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Insurance_pic" class="form-label">Insurance Picture:</label>
+                    <input type="file" id="Fld_Insurance_pic" name="Fld_Insurance_pic" class="form-control">
+                    {% if data.Fld_Insurance_pic %}
+                    <img src="{{ data.Fld_Insurance_pic.url }}" alt="Insurance Picture" class="img-thumbnail mt-2" style="width:100px; height:100px;">
+                    {% else %}
+                    <p>No insurance picture available</p>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Category" class="form-label">Category:</label>
+                    <select id="Fld_Category" name="Fld_Category" class="form-control" required>
+                        <option value="">Select</option>
+                        <option value="individual" {% if data.Fld_Category == 'individual' %}selected{% endif %}>Individual</option>
+                        <option value="family" {% if data.Fld_Category == 'family' %}selected{% endif %}>Family</option>
+                        <option value="senior" {% if data.Fld_Category == 'senior' %}selected{% endif %}>Senior Citizens</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Validity" class="form-label" >Validity:</label>
+                    <input type="date" id="Fld_Validity" name="Fld_Validity" class="form-control" value="{{ data.Fld_Validity|date:'Y-m-d'|default:'' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Fld_Status" class="form-label">Status:</label>
+                    <select id="Fld_Status" name="Fld_Status" class="form-control" required>
+                        <option value="">Select</option>
+                        <option value="active" {% if data.Fld_Status == 'active' %}selected{% endif %}>Active</option>
+                        <option value="expired" {% if data.Fld_Status == 'expired' %}selected{% endif %}>Expired</option>
+                        <option value="pending" {% if data.Fld_Status == 'pending' %}selected{% endif %}>Pending</option>
+                    </select>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-primary">{% if data %}Update{% else %}Create{% endif %}</button>
+                    <a href="{% url 'admindash' %}" class="btn btn-danger">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

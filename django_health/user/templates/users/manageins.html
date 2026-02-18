@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <a href="{% url 'admindash' %}" class="btn btn-primary">Back</a><br><br>
+    <div class="card">
+        <div class="card-header text-center bg-success text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><b>Customers Table</b></h5>
+                <form method="GET" class="d-flex align-items-center ml-auto">
+                    <input type="text" name="q" placeholder="Search..." class="form-control mr-3">
+                    <button type="submit" class="btn btn-light">Search</button>
+                    {% if request.GET.q %}
+                        <a href="{% url 'managecustomers' %}" class="btn btn-secondary ml-1">Clear</a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-success table-striped table-hover table-sm">
+                <thead class="table-active">
+                    <tr>
+                        <th>Sl no.</th>
+                        <th>Plan Name</th>
+                        <th>Description</th>
+                        <th>Coverage Amount</th>
+                        <th>Premium</th>
+                        <th>Period</th>
+                        <th>Coverage Details</th>
+                        <th>Insurance Picture</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if page_obj %}
+                        {% for plan in page_obj %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ plan.Fld_Plan_name }}</td>
+                            <td>{{ plan.Fld_Description }}</td>
+                            <td>{{ plan.Fld_Coverage_amount }}</td>
+                            <td>{{ plan.Fld_Premium }}</td>
+                            <td>{{ plan.Fld_Period }}</td>
+                            <td>{{ plan.Fld_Coverage_details }}</td>
+                            <td>
+                                {% if plan.Fld_Insurance_pic %}
+                                    <img src="{{ plan.Fld_Insurance_pic.url }}" alt="{{ plan.Fld_Plan_name }}'s insurance picture" class="img-thumbnail" style="width:100px; height:100px;">
+                                {% else %}
+                                    <p>No insurance picture available</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'updateplan' plan.id %}" class="btn btn-success btn-sm">Edit</a>
+                                <a href="{% url 'confirmdelete' plan.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="10" class="text-center">No records found</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+
+
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1{{ query }}">« first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}{{ query }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{{ query }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}{{ query }}">last »</a>
+                    {% endif %}
+                </span>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

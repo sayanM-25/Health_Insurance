@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <a href="{% url 'dashboard' %}" class="btn btn-primary">Back</a><br><br>
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h5 class="text-center">Confirm Payment</h5>
+        </div>
+        <div class="card-body text-center">
+            <p class="card-text">Subtotal: ₹{{ total_cost }}</p>
+            <p class="card-text">GST (18%): ₹{{ gst }}</p>
+            <p class="card-text">Total: ₹{{ total_cost_with_gst }}</p>
+            <div class="d-grid gap-2 col-4 mx-auto mt-4">
+                <form method="post" action="{% url 'payment' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Pay</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

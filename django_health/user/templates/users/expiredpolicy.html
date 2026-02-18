@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+{% endif %}
+
+    <div class="container mt-5">
+        <a href="{% url 'admindash' %}" class="btn btn-primary">Back</a><br><br>
+        <div class="card">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="card-title"><center>Expired Insurance Policy</center></h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Sl no.</th>
+                            <th>Username</th>
+                            <th>Plan Name</th>
+                            <th>Expiration Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in expired_transactions %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ transaction.user.username }}</td>
+                            <td>{{ transaction.plan.Fld_Plan_name }}</td>
+                            <td>{{ transaction.Fld_Expiration_date }}</td>
+                            <td>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="user_id" value="{{ transaction.id }}">
+                                    <button type="submit" class="btn btn-success">Send Email</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
