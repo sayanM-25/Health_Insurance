@@ -150,9 +150,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'isayan635@gmail.com'
-EMAIL_HOST_PASSWORD = 'rxpmoxlsisuphcvo'
-DEFAULT_FROM_EMAIL = 'isayan635@gamil.com'
+EMAIL_HOST_USER = 'your email'
+EMAIL_HOST_PASSWORD = 'password'
+DEFAULT_FROM_EMAIL = 'your default email'
 
 #paypal sandbox
 
