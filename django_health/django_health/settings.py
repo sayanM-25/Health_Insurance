@@ -156,6 +156,6 @@ DEFAULT_FROM_EMAIL = 'your default email'
 
 #paypal sandbox
 
-PAYPAL_CLIENT_ID = 'Aaas9jNBLX4W_CHQF7Tfg0SfXoUqMzk_Xa4njNWaG3XkKaF07Lv0ZwBas59A9EAKqthlmGh9JzhESPQv'
-PAYPAL_CLIENT_SECRET = 'ELjD3nNYNLBrJNFQ5plcghS9hrKOxJiCWN1clrfeef2L-AycmOlwEFVdZpkzGHnRYSn72NEoyh__4nNW'
+PAYPAL_CLIENT_ID = 'your paypal client ID'
+PAYPAL_CLIENT_SECRET = 'your secret key'
 PAYPAL_MODE = 'sandbox'
