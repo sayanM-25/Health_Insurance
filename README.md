@@ -96,6 +96,9 @@ Change EMAIL_HOST_USER = 'your email'
 EMAIL_HOST_PASSWORD = 'password'
 DEFAULT_FROM_EMAIL = 'your default email'
 
+Create id and secret key on paypalsandbox, Change PAYPAL_CLIENT_ID = 'your paypal client ID'
+PAYPAL_CLIENT_SECRET = 'your paypal client secret'
+
 #### static and media files:
 Inside django_health project folder create media/profiles and static/images folders
 
