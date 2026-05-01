@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-label="Senior health plan">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f0f9ff"/><stop offset=".55" stop-color="#c8fff3"/><stop offset="1" stop-color="#fffdfa"/></linearGradient>
+    <linearGradient id="blue" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#58b4f6"/><stop offset="1" stop-color="#1f5b91"/></linearGradient>
+  </defs>
+  <rect width="960" height="600" fill="url(#bg)"/>
+  <circle cx="180" cy="470" r="132" fill="#eeeaff" opacity=".7"/>
+  <circle cx="800" cy="140" r="118" fill="#d8f0ff" opacity=".8"/>
+  <rect x="210" y="110" width="540" height="380" rx="42" fill="#ffffff" opacity=".88"/>
+  <path d="M480 410s-138-70-138-202c82 0 138-54 138-54s56 54 138 54c0 132-138 202-138 202z" fill="url(#blue)"/>
+  <path d="M480 242v96M432 290h96" stroke="#ffffff" stroke-width="26" stroke-linecap="round"/>
+  <path d="M298 448h364" stroke="#17446f" stroke-width="20" stroke-linecap="round" opacity=".2"/>
+</svg>

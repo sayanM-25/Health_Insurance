@@ -97,7 +97,7 @@
                     {% if plan.Fld_Insurance_pic %}
                     <img src="{{ plan.Fld_Insurance_pic.url }}" class="plan-image" alt="{{ plan.Fld_Plan_name }} insurance picture">
                     {% else %}
-                    <img src="{% static 'user/images/plan-default.svg' %}" class="plan-image" alt="Default insurance plan illustration">
+                    <img src="{% static 'user/images/plan_pic/default-plan.svg' %}" class="plan-image" alt="Default insurance plan illustration">
                     {% endif %}
                     <div class="plan-content">
                         <span class="plan-chip">{{ plan.Fld_Period }}</span>
@@ -157,7 +157,7 @@
                                         {% if plan.plan.Fld_Insurance_pic %}
                                         <img src="{{ plan.plan.Fld_Insurance_pic.url }}" alt="{{ plan.plan.Fld_Plan_name }} insurance picture" class="img-thumbnail">
                                         {% else %}
-                                        <img src="{% static 'user/images/plan-default.svg' %}" alt="Default insurance plan illustration" class="img-thumbnail">
+                                        <img src="{% static 'user/images/plan_pic/default-plan.svg' %}" alt="Default insurance plan illustration" class="img-thumbnail">
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -199,7 +199,7 @@
                                         {% if member.plan.Fld_Insurance_pic %}
                                         <img src="{{ member.plan.Fld_Insurance_pic.url }}" alt="{{ member.plan.Fld_Plan_name }} insurance picture" class="img-thumbnail">
                                         {% else %}
-                                        <img src="{% static 'user/images/plan-default.svg' %}" alt="Default insurance plan illustration" class="img-thumbnail">
+                                        <img src="{% static 'user/images/plan_pic/default-plan.svg' %}" alt="Default insurance plan illustration" class="img-thumbnail">
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -225,7 +225,7 @@
                     {% if plan.Fld_Insurance_pic %}
                     <img src="{{ plan.Fld_Insurance_pic.url }}" class="plan-image" alt="{{ plan.Fld_Plan_name }}">
                     {% else %}
-                    <img src="{% static 'user/images/plan-default.svg' %}" class="plan-image" alt="Default insurance plan illustration">
+                    <img src="{% static 'user/images/plan_pic/default-plan.svg' %}" class="plan-image" alt="Default insurance plan illustration">
                     {% endif %}
                     <div class="plan-content">
                         <span class="plan-chip">{{ plan.Fld_Category }}</span>

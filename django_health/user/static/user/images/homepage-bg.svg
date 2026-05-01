@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Calm healthcare background">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#f9fdff"/>
+      <stop offset=".42" stop-color="#d8f0ff"/>
+      <stop offset=".72" stop-color="#eeeaff"/>
+      <stop offset="1" stop-color="#c8fff3"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#ffffff" stop-opacity=".96"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".56"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#58b4f6"/>
+      <stop offset="1" stop-color="#2877ba"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="210" cy="150" r="170" fill="#c8fff3" opacity=".72"/>
+  <circle cx="1330" cy="160" r="210" fill="#ffffff" opacity=".6"/>
+  <circle cx="1230" cy="730" r="260" fill="#eeeaff" opacity=".72"/>
+  <circle cx="350" cy="760" r="220" fill="#aee1ff" opacity=".34"/>
+  <path d="M0 700C280 560 430 660 720 530s550-80 880-230v600H0z" fill="#ffffff" opacity=".36"/>
+  <rect x="250" y="210" width="520" height="360" rx="42" fill="url(#glass)" stroke="#ffffff" stroke-width="8"/>
+  <rect x="315" y="285" width="270" height="30" rx="15" fill="#17446f" opacity=".9"/>
+  <rect x="315" y="350" width="360" height="20" rx="10" fill="#7fcbff"/>
+  <rect x="315" y="394" width="310" height="20" rx="10" fill="#aee1ff"/>
+  <rect x="315" y="465" width="150" height="64" rx="20" fill="url(#blue)"/>
+  <path d="M1030 575s-190-96-190-278c112 0 190-74 190-74s78 74 190 74c0 182-190 278-190 278z" fill="#ffffff" stroke="#2877ba" stroke-width="18" stroke-linejoin="round"/>
+  <path d="M1030 327v142M959 398h142" stroke="#58b4f6" stroke-width="34" stroke-linecap="round"/>
+  <path d="M120 110h125M1180 675h190M1110 735h95" stroke="#ffffff" stroke-width="18" stroke-linecap="round" opacity=".74"/>
+</svg>

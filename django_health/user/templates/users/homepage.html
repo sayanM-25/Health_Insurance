@@ -1,46 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
 
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header bg-secondary text-white text-center">
-            <h2 class="mb-0">Hi! Welcome to Django Health Service</h2>
-        </div>
-        <div class="card-body">
-            <p class="text-center"><i>This is a website of perfectly curated health plans each tailored according to the needs of the customers. Feel free to explore our content and live a hassle-free life.</i></p>
-        </div>
-    </div>
-    
-    <div class="card mt-4">
-        <div class="card-header bg-success text-white text-center">
-            <h2 class="mb-0"><strong>Some of our Popular Plans</strong></h2>
-        </div>
-        <div class="card-body">
-            <div class="container mt-5">
-                <div class="row">
-                    {% for plan in user %}
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            {% if plan.Fld_Insurance_pic %}
-                            <img src="{{ plan.Fld_Insurance_pic.url }}" class="card-img-top" alt="{{ plan.Fld_Plan_name }}">
-                            {% else %}
-                            <img src="{% static 'user/images/plan-default.svg' %}" class="card-img-top" alt="Default insurance plan illustration">
-                            {% endif %}
-                            <div class="card-body">
-                                <h5 class="card-title">{{ plan.Fld_Plan_name }}</h5>
-                                <p class="card-text">{{ plan.Fld_Description }}</p>
-                                <p class="card-text"><strong>Price:</strong> ₹{{ plan.Fld_Coverage_amount }} ({{ plan.Fld_Period }})</p>
-                                <p class="card-text"><strong>Coverage Details:</strong> {{ plan.Fld_Coverage_details }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+<section class="home-hero">
+    <div class="home-hero-content">
+        <span class="sidebar-kicker">Health cover made simpler</span>
+        <h1>Find a plan that feels clear, calm, and built for real life.</h1>
+        <p>Explore curated health insurance plans for individuals, families, and senior citizens with clean comparisons and thoughtful coverage details.</p>
+        <div class="home-hero-actions">
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="btn btn-primary">Explore Plans</a>
+            {% else %}
+            <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
+            <a href="{% url 'login' %}" class="btn btn-light">Log In</a>
+            {% endif %}
         </div>
     </div>
-</div>
+    <div class="home-hero-card">
+        <strong>{{ user|length }}</strong>
+        <span>available plans</span>
+    </div>
+</section>
 
+<section class="home-plans">
+    <div class="section-heading">
+        <div>
+            <span class="sidebar-kicker">Popular choices</span>
+            <h2>Plans Worth A Closer Look</h2>
+        </div>
+    </div>
+    <div class="plan-grid">
+        {% for plan in user %}
+        {% plan_image_for_category plan.Fld_Category as category_plan_image %}
+        <article class="plan-card home-plan-card">
+            <img src="{% static category_plan_image %}" class="plan-image" alt="{{ plan.Fld_Plan_name }} category illustration">
+            <div class="plan-content">
+                <span class="plan-chip">{{ plan.Fld_Category }}</span>
+                <h3>{{ plan.Fld_Plan_name }}</h3>
+                <p>{{ plan.Fld_Description }}</p>
+                <div class="plan-meta">
+                    <span><strong>Cover:</strong> ₹{{ plan.Fld_Coverage_amount }}</span>
+                    <span><strong>Period:</strong> {{ plan.Fld_Period }}</span>
+                </div>
+                <p class="plan-detail"><strong>Coverage:</strong> {{ plan.Fld_Coverage_details }}</p>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
 
 {% endblock content %}

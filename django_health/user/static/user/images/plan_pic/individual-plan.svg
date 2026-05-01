@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-label="Individual health plan">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f8fdff"/><stop offset=".55" stop-color="#d8f0ff"/><stop offset="1" stop-color="#c8fff3"/></linearGradient>
+    <linearGradient id="blue" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#58b4f6"/><stop offset="1" stop-color="#2877ba"/></linearGradient>
+  </defs>
+  <rect width="960" height="600" fill="url(#bg)"/>
+  <circle cx="160" cy="120" r="110" fill="#eeeaff" opacity=".75"/>
+  <circle cx="790" cy="500" r="150" fill="#ffffff" opacity=".66"/>
+  <rect x="196" y="112" width="568" height="376" rx="42" fill="#ffffff" opacity=".88"/>
+  <circle cx="376" cy="265" r="70" fill="url(#blue)"/>
+  <path d="M256 430c28-84 212-84 240 0" fill="#d8f0ff"/>
+  <path d="M626 212v72M590 248h72" stroke="#58b4f6" stroke-width="28" stroke-linecap="round"/>
+  <path d="M590 338h104M590 386h78" stroke="#17446f" stroke-width="22" stroke-linecap="round"/>
+</svg>

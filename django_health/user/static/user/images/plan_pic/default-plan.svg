@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-label="Health insurance plan">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f7fcff"/><stop offset=".45" stop-color="#dff4ff"/><stop offset="1" stop-color="#eeeaff"/></linearGradient>
+    <linearGradient id="card" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#c8fff3"/></linearGradient>
+    <linearGradient id="blue" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#58b4f6"/><stop offset="1" stop-color="#2877ba"/></linearGradient>
+  </defs>
+  <rect width="960" height="600" fill="url(#sky)"/>
+  <circle cx="158" cy="120" r="92" fill="#c8fff3" opacity=".72"/>
+  <circle cx="820" cy="104" r="118" fill="#d8f0ff" opacity=".86"/>
+  <rect x="210" y="112" width="540" height="376" rx="36" fill="url(#card)" stroke="#ffffff" stroke-width="10"/>
+  <rect x="260" y="172" width="250" height="24" rx="12" fill="#17446f" opacity=".9"/>
+  <rect x="260" y="220" width="392" height="18" rx="9" fill="#7fcbff"/>
+  <rect x="260" y="258" width="308" height="18" rx="9" fill="#aee1ff"/>
+  <path d="M616 316c0 74-76 112-76 112s-76-38-76-112v-86c45 0 76-30 76-30s31 30 76 30v86z" fill="#ffffff" stroke="#2877ba" stroke-width="14" stroke-linejoin="round"/>
+  <path d="M540 254v118M481 313h118" stroke="#58b4f6" stroke-width="24" stroke-linecap="round"/>
+</svg>

@@ -26,4 +26,14 @@
             }
         });
     });
+
+    document.querySelectorAll(".alert").forEach(function (alert) {
+        window.setTimeout(function () {
+            alert.classList.add("alert-hide");
+
+            window.setTimeout(function () {
+                alert.remove();
+            }, 260);
+        }, 3000);
+    });
 })();
