@@ -40,7 +40,7 @@
                     <label for="Fld_Insurance_pic" class="form-label">Insurance Picture:</label>
                     <input type="file" id="Fld_Insurance_pic" name="Fld_Insurance_pic" class="form-control">
                     {% if data.Fld_Insurance_pic %}
-                    <img src="{{ data.Fld_Insurance_pic.url }}" alt="Insurance Picture" class="img-thumbnail mt-2" style="width:100px; height:100px;">
+                    <img src="{{ data.Fld_Insurance_pic.url }}" alt="Insurance Picture" class="img-thumbnail mt-2">
                     {% else %}
                     <p>No insurance picture available</p>
                     {% endif %}

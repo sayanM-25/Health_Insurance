@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
 <div class="container mt-5">
@@ -24,7 +25,7 @@
                             {% if plan.Fld_Insurance_pic %}
                             <img src="{{ plan.Fld_Insurance_pic.url }}" class="card-img-top" alt="{{ plan.Fld_Plan_name }}">
                             {% else %}
-                            <img src="default-placeholder.png" class="card-img-top" alt="No Image Available">
+                            <img src="{% static 'user/images/plan-default.svg' %}" class="card-img-top" alt="Default insurance plan illustration">
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">{{ plan.Fld_Plan_name }}</h5>

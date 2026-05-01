@@ -51,7 +51,7 @@
                             <td>{{ plan.Fld_Quantity }}</td>
                             <td>
                                 {% if plan.plan.Fld_Insurance_pic %}
-                                    <img src="{{ plan.plan.Fld_Insurance_pic.url }}" alt="{{ plan.plan.Fld_Plan_name }}'s insurance picture" class="img-thumbnail" style="width:100px; height:100px;">
+                                    <img src="{{ plan.plan.Fld_Insurance_pic.url }}" alt="{{ plan.plan.Fld_Plan_name }}'s insurance picture" class="img-thumbnail">
                                 {% else %}
                                     <p>No insurance picture available</p>
                                 {% endif %}
@@ -103,7 +103,7 @@
                             <td>{{ member.Fld_Member_count }}</td>
                             <td>
                                 {% if member.plan.Fld_Insurance_pic %}
-                                    <img src="{{ member.plan.Fld_Insurance_pic.url }}" alt="{{ member.plan.Fld_Plan_name }}'s insurance picture" class="img-thumbnail" style="width:100px; height:100px;">
+                                    <img src="{{ member.plan.Fld_Insurance_pic.url }}" alt="{{ member.plan.Fld_Plan_name }}'s insurance picture" class="img-thumbnail">
                                 {% else %}
                                     <p>No insurance picture available</p>
                                 {% endif %}

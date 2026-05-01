@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<h5><center>Delete plan<center></h5>
-<p><center><b>Are you sure you want to delete "{{ data.Fld_Plan_name }}" ?</center></b></p>
-<form method="post" style="text-align:center">
-  {% csrf_token %}
-  <div style="text-align:center">
-  <button class="btn btn-success" type="submit">Yes, delete</button>
-  <a class="btn btn-danger" href="{% url 'manageinsurance' %}">Cancel</a>
+<div class="confirm-panel card">
+  <div class="card-header text-center">
+    <h5 class="mb-0">Delete Plan</h5>
   </div>
-</form>
+  <div class="card-body text-center">
+    <p><b>Are you sure you want to delete "{{ data.Fld_Plan_name }}"?</b></p>
+    <form method="post">
+      {% csrf_token %}
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-success" type="submit">Yes, delete</button>
+        <a class="btn btn-danger" href="{% url 'manageinsurance' %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock content %}
